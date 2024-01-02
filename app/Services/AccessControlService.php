@@ -19,13 +19,25 @@ class AccessControlService
         }
     }
 
-    function canListHotel() : void {
+    function canListHotels() : void {
         if (!Auth::check()) {
             throw new UnauthorizedException('Você não tem permissão para criar um hotel.');
         }
     }
 
     function canUpdateHotel() : void {
+        if (!Auth::check()) {
+            throw new UnauthorizedException('Você não tem permissão para criar um hotel.');
+        }
+    }
+
+    function canDeleteHotel() : void {
+        if (!Auth::check()) {
+            throw new UnauthorizedException('Você não tem permissão para criar um hotel.');
+        }
+    }
+
+    function canForceDeleteHotel() : void {
         if (!Auth::check()) {
             throw new UnauthorizedException('Você não tem permissão para criar um hotel.');
         }

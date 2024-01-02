@@ -28,6 +28,8 @@ beforeEach(function () {
 });
 
 it('list all hotels', function () {
+    $this->accessControlServiceMock->shouldReceive('canListHotels')->andReturn(true);
+
     $hotels = Hotel::factory(3)->create();
 
     $result = $this->hotelService->listHotels();
@@ -42,6 +44,8 @@ it('list all hotels', function () {
 });
 
 it('creates a hotel', function () {
+    $this->accessControlServiceMock->shouldReceive('canCreateHotel')->andReturn(true);
+
     $result = $this->hotelService->createHotel($this->data);
 
     expect(Arr::except($result->toArray(), ['id', 'created_at', 'deleted_at', 'updated_at']))
@@ -49,6 +53,8 @@ it('creates a hotel', function () {
 });
 
 it('show a hotel', function () {
+    $this->accessControlServiceMock->shouldReceive('canShowHotel')->andReturn(true);
+
     $hotel = Hotel::factory()->create();
 
     $result = $this->hotelService->findHotel($hotel->id);
@@ -57,11 +63,33 @@ it('show a hotel', function () {
 });
 
 it('update a hotel', function () {
+    $this->accessControlServiceMock->shouldReceive('canUpdateHotel')->andReturn(true);
+
     $hotel = Hotel::factory()->create();
 
     $result = $this->hotelService->updateHotel($hotel, $this->data);
 
     expect(Arr::except($result->toArray(), ['id', 'created_at', 'deleted_at', 'updated_at']))
         ->toEqual($this->data);
+});
+
+it('soft deletes a hotel', function () {
+    $this->accessControlServiceMock->shouldReceive('canDeleteHotel')->andReturn(true);
+
+    $hotel = Hotel::factory()->create();
+
+    $this->hotelService->deleteHotel($hotel);
+
+    $this->assertSoftDeleted('hotels', ['id' => $hotel->id]);
+});
+
+it('force deletes a hotel', function () {
+    $this->accessControlServiceMock->shouldReceive('canDeleteHotel')->andReturn(true);
+
+    $hotel = Hotel::factory()->create();
+
+    $this->hotelService->deleteHotel($hotel);
+
+    $this->assertDatabaseMissing('hotels', ['id' => $hotel->id]);
 });
 

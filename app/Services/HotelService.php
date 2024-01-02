@@ -27,7 +27,7 @@ class HotelService
     }
 
     function listHotels() : Collection {
-        $this->accessControl->canListHotel();
+        $this->accessControl->canListHotels();
 
         return Hotel::all();
     }
@@ -39,5 +39,19 @@ class HotelService
         $hotel->update($data);
 
         return $hotel;
+    }
+
+    public function deleteHotel(Hotel $hotel): void
+    {
+        $this->accessControl->canDeleteHotel();
+
+        $hotel->delete();
+    }
+
+    public function forceDeleteHotel(Hotel $hotel): void
+    {
+        $this->accessControl->canForceDeleteHotel();
+
+        $hotel->forceDelete();
     }
 }
