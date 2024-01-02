@@ -73,6 +73,20 @@ class User extends Authenticatable
 
     public function permissions(): MorphToMany
     {
-        return $this->morphToMany(Permission::class, 'permissionable');
+        return $this->morphToMany(Permission::class, 'permissionable', 'permission_permissionable');
+    }
+
+    /**
+     * Verifica se o usuário possui uma permissão, independentemente de ser atribuída diretamente ou via função (role).
+     *
+     * @param string $permissionName
+     * @return bool
+     */
+    public function hasPermission($permission): bool
+    {
+        return $this->permissions()->where('name', $permission)->exists() ||
+            $this->roles()->whereHas('permissions', function ($query) use ($permission) {
+                $query->where('name', $permission);
+            })->exists();
     }
 }
