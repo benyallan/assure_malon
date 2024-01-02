@@ -9,7 +9,8 @@ class HotelService
 {
     private AccessControlService $accessControl;
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->accessControl = new AccessControlService();
     }
 
@@ -20,13 +21,15 @@ class HotelService
         return Hotel::create($data);
     }
 
-    function findHotel(string $id) : Hotel {
+    public function findHotel(string $id): Hotel
+    {
         $this->accessControl->canShowHotel();
 
         return Hotel::findOrFail($id);
     }
 
-    function listHotels() : Collection {
+    public function listHotels(): Collection
+    {
         $this->accessControl->canListHotels();
 
         return Hotel::all();

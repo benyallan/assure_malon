@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('permissions', function (Blueprint $table) {
-            $table->uuid('id')->primary();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
-            $table->text('description')->nullable();
+        Schema::create('permission_permissionable', function (Blueprint $table) {
+            $table->uuidMorphs('permissionable', 'permissionable_idx');
+            $table->foreignUuid('permission_id')->constrained()->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('permissions');
+        Schema::dropIfExists('permission_permissionable');
     }
 };

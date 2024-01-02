@@ -92,4 +92,3 @@ it('force deletes a hotel', function () {
 
     $this->assertDatabaseMissing('hotels', ['id' => $hotel->id]);
 });
-
