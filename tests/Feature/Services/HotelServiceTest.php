@@ -2,18 +2,12 @@
 
 use App\Enums\HotelStatus;
 use App\Models\Hotel;
-use App\Services\AccessControlService;
 use App\Services\HotelService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 
 beforeEach(function () {
-    $this->accessControlServiceMock = mock(AccessControlService::class);
-
-    Auth::shouldReceive('check')->andReturn(true);
-    $this->accessControlServiceMock->shouldReceive('canCreateHotel')->andReturn(true);
-
     $this->hotelService = new HotelService(app());
 
     $this->data = [
@@ -28,9 +22,7 @@ beforeEach(function () {
 });
 
 it('list all hotels', function () {
-    $this->accessControlServiceMock->shouldReceive('canListHotels')->andReturn(true);
-
-    $hotels = Hotel::factory(3)->create();
+    Hotel::factory(3)->create();
 
     $result = $this->hotelService->listHotels();
 
@@ -44,8 +36,6 @@ it('list all hotels', function () {
 });
 
 it('creates a hotel', function () {
-    $this->accessControlServiceMock->shouldReceive('canCreateHotel')->andReturn(true);
-
     $result = $this->hotelService->createHotel($this->data);
 
     expect(Arr::except($result->toArray(), ['id', 'created_at', 'deleted_at', 'updated_at']))
@@ -53,8 +43,6 @@ it('creates a hotel', function () {
 });
 
 it('show a hotel', function () {
-    $this->accessControlServiceMock->shouldReceive('canShowHotel')->andReturn(true);
-
     $hotel = Hotel::factory()->create();
 
     $result = $this->hotelService->findHotel($hotel->id);
@@ -63,8 +51,6 @@ it('show a hotel', function () {
 });
 
 it('update a hotel', function () {
-    $this->accessControlServiceMock->shouldReceive('canUpdateHotel')->andReturn(true);
-
     $hotel = Hotel::factory()->create();
 
     $result = $this->hotelService->updateHotel($hotel, $this->data);
@@ -74,8 +60,6 @@ it('update a hotel', function () {
 });
 
 it('soft deletes a hotel', function () {
-    $this->accessControlServiceMock->shouldReceive('canDeleteHotel')->andReturn(true);
-
     $hotel = Hotel::factory()->create();
 
     $this->hotelService->deleteHotel($hotel);
@@ -84,8 +68,6 @@ it('soft deletes a hotel', function () {
 });
 
 it('force deletes a hotel', function () {
-    $this->accessControlServiceMock->shouldReceive('canDeleteHotel')->andReturn(true);
-
     $hotel = Hotel::factory()->create();
 
     $this->hotelService->forceDeleteHotel($hotel);
