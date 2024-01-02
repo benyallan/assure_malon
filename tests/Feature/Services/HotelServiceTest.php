@@ -88,7 +88,7 @@ it('force deletes a hotel', function () {
 
     $hotel = Hotel::factory()->create();
 
-    $this->hotelService->deleteHotel($hotel);
+    $this->hotelService->forceDeleteHotel($hotel);
 
     $this->assertDatabaseMissing('hotels', ['id' => $hotel->id]);
 });
