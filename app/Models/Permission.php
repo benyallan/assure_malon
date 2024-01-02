@@ -15,11 +15,11 @@ class Permission extends Model
 
     public function users(): MorphToMany
     {
-        return $this->morphedByMany(User::class, 'permissionable');
+        return $this->morphedByMany(User::class, 'permissionable', 'permission_permissionable');
     }
 
     public function roles(): MorphToMany
     {
-        return $this->morphedByMany(Role::class, 'permissionable');
+        return $this->morphedByMany(Role::class, 'permissionable', 'permission_permissionable');
     }
 }
