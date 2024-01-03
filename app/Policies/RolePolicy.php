@@ -4,15 +4,28 @@ namespace App\Policies;
 
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class RolePolicy
 {
+    /**
+     * Perform pre-authorization checks.
+     */
+    public function before(User $user, string $ability): ?bool
+    {
+        if ($user->isAdministrator) {
+            return true;
+        }
+
+        return null;
+    }
+
     /**
      * Determine whether the user can view any models.
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermission('role.read');
     }
 
     /**
@@ -20,7 +33,7 @@ class RolePolicy
      */
     public function view(User $user, Role $role): bool
     {
-        //
+        return $user->hasPermission('role.read');
     }
 
     /**
@@ -28,7 +41,7 @@ class RolePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermission('role.create');
     }
 
     /**
@@ -36,7 +49,7 @@ class RolePolicy
      */
     public function update(User $user, Role $role): bool
     {
-        //
+        return $user->hasPermission('role.update');
     }
 
     /**
@@ -44,7 +57,7 @@ class RolePolicy
      */
     public function delete(User $user, Role $role): bool
     {
-        //
+        return $user->hasPermission('role.delete');
     }
 
     /**
@@ -52,7 +65,7 @@ class RolePolicy
      */
     public function restore(User $user, Role $role): bool
     {
-        //
+        return $user->hasPermission('role.restore');
     }
 
     /**
@@ -60,6 +73,6 @@ class RolePolicy
      */
     public function forceDelete(User $user, Role $role): bool
     {
-        //
+        return $user->hasPermission('role.force-delete');
     }
 }

@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'Beny Allan',
             'email' => 'benyallan@gmail.com',
             'password' => Hash::make('teste123'),
+            'isAdministrator' => true,
         ]);
 
         $this->call(PermissionSeeder::class);
