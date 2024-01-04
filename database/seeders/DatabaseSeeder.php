@@ -20,6 +20,12 @@ class DatabaseSeeder extends Seeder
             'isAdministrator' => true,
         ]);
 
+        \App\Models\User::factory()->create([
+            'name' => 'Carina Rosa',
+            'email' => 'crdo_88@hotmail.com',
+            'password' => Hash::make('teste123'),
+        ]);
+
         $this->call(PermissionSeeder::class);
     }
 }
