@@ -4,7 +4,6 @@ namespace App\Policies;
 
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 
 class RolePolicy
 {
@@ -63,7 +62,7 @@ class RolePolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function  deleteAny(User $user, Role $role): bool
+    public function deleteAny(User $user, Role $role): bool
     {
         return $user->hasPermission('role.delete-any');
     }

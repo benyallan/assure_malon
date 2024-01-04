@@ -5,7 +5,6 @@ use App\Models\Hotel;
 use App\Services\HotelService;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\Auth;
 
 beforeEach(function () {
     $this->hotelService = new HotelService(app());

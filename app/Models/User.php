@@ -20,10 +20,10 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
-    use Notifiable;
-    use TwoFactorAuthenticatable;
     use HasUuids;
+    use Notifiable;
     use SoftDeletes;
+    use TwoFactorAuthenticatable;
 
     /**
      * The attributes that are mass assignable.
@@ -80,8 +80,7 @@ class User extends Authenticatable
     /**
      * Verifica se o usuário possui uma permissão, independentemente de ser atribuída diretamente ou via função (role).
      *
-     * @param string $permissionName
-     * @return bool
+     * @param  string  $permissionName
      */
     public function hasPermission($permission): bool
     {
