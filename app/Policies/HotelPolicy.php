@@ -24,7 +24,7 @@ class HotelPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->hasPermission('hotel.view-any');
     }
 
     /**
@@ -32,7 +32,7 @@ class HotelPolicy
      */
     public function view(User $user, Hotel $hotel): bool
     {
-        //
+        return $user->hasPermission('hotel.view');
     }
 
     /**
@@ -40,7 +40,7 @@ class HotelPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->hasPermission('hotel.create');
     }
 
     /**
@@ -48,7 +48,7 @@ class HotelPolicy
      */
     public function update(User $user, Hotel $hotel): bool
     {
-        //
+        return $user->hasPermission('hotel.update');
     }
 
     /**
@@ -56,7 +56,15 @@ class HotelPolicy
      */
     public function delete(User $user, Hotel $hotel): bool
     {
-        //
+        return $user->hasPermission('hotel.delete');
+    }
+
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function deleteAny(User $user, Hotel $hotel): bool
+    {
+        return $user->hasPermission('hotel.delete-any');
     }
 
     /**
@@ -64,7 +72,15 @@ class HotelPolicy
      */
     public function restore(User $user, Hotel $hotel): bool
     {
-        //
+        return $user->hasPermission('hotel.restore');
+    }
+
+    /**
+     * Determine whether the user can restore the model.
+     */
+    public function restoreAny(User $user, Hotel $hotel): bool
+    {
+        return $user->hasPermission('hotel.restore-any');
     }
 
     /**
@@ -72,6 +88,22 @@ class HotelPolicy
      */
     public function forceDelete(User $user, Hotel $hotel): bool
     {
-        //
+        return $user->hasPermission('hotel.force-delete');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDeleteAny(User $user, Hotel $hotel): bool
+    {
+        return $user->hasPermission('hotel.force-delete-any');
+    }
+
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function reorder(User $user): bool
+    {
+        return $user->hasPermission('hotel.reorder');
     }
 }
