@@ -14,8 +14,8 @@ class PermissionSeeder extends Seeder
     {
         // Create permissions for role CRUD
         Permission::create(['name' => 'role.create', 'slug' => 'role-create', 'description' => 'Create Role']);
-        Permission::create(['name' => 'role.view', 'slug' => 'role-read', 'description' => 'Read Role']);
-        Permission::create(['name' => 'role.view-any', 'slug' => 'role-read', 'description' => 'Read Role']);
+        Permission::create(['name' => 'role.view', 'slug' => 'role-view', 'description' => 'Read Role']);
+        Permission::create(['name' => 'role.view-any', 'slug' => 'role-view-any', 'description' => 'Read Any Roles']);
         Permission::create(['name' => 'role.update', 'slug' => 'role-update', 'description' => 'Update Role']);
         Permission::create(['name' => 'role.restore', 'slug' => 'role-restore', 'description' => 'Restore Role']);
         Permission::create(['name' => 'role.restore-any', 'slug' => 'role-restore-any', 'description' => 'Restore Any Roles']);
@@ -27,10 +27,15 @@ class PermissionSeeder extends Seeder
 
         // Create permissions for hotel CRUD
         Permission::create(['name' => 'hotel.create', 'slug' => 'hotel-create', 'description' => 'Create Hotel']);
-        Permission::create(['name' => 'hotel.read', 'slug' => 'hotel-read', 'description' => 'Read Hotel']);
+        Permission::create(['name' => 'hotel.view', 'slug' => 'hotel-view', 'description' => 'Read Hotel']);
+        Permission::create(['name' => 'hotel.view-any', 'slug' => 'hotel-view-any', 'description' => 'Read Any Hotels']);
         Permission::create(['name' => 'hotel.update', 'slug' => 'hotel-update', 'description' => 'Update Hotel']);
         Permission::create(['name' => 'hotel.restore', 'slug' => 'hotel-restore', 'description' => 'Restore Hotel']);
+        Permission::create(['name' => 'hotel.restore-any', 'slug' => 'hotel-restore-any', 'description' => 'Restore Any Hotels']);
         Permission::create(['name' => 'hotel.delete', 'slug' => 'hotel-delete', 'description' => 'Delete Hotel']);
+        Permission::create(['name' => 'hotel.delete-any', 'slug' => 'hotel-delete-any', 'description' => 'Delete Any Hotels']);
         Permission::create(['name' => 'hotel.force-delete', 'slug' => 'hotel-force-delete', 'description' => 'Force Delete Hotel']);
+        Permission::create(['name' => 'hotel.force-delete-any', 'slug' => 'hotel-force-delete-any', 'description' => 'Force Delete Any Hotels']);
+        Permission::create(['name' => 'hotel.reorder', 'slug' => 'hotel-reorder', 'description' => 'Reorder Hotels']);
     }
 }
