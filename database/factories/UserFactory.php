@@ -65,4 +65,12 @@ class UserFactory extends Factory
             'ownedTeams'
         );
     }
+
+    public function administrator() : Factory {
+        return $this->state(function (array $attributes) {
+            return [
+                'isAdministrator' => true,
+            ];
+        });
+    }
 }

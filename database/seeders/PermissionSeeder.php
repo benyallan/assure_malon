@@ -37,5 +37,18 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'hotel.force-delete', 'slug' => 'hotel-force-delete', 'description' => 'Force Delete Hotel']);
         Permission::create(['name' => 'hotel.force-delete-any', 'slug' => 'hotel-force-delete-any', 'description' => 'Force Delete Any Hotels']);
         Permission::create(['name' => 'hotel.reorder', 'slug' => 'hotel-reorder', 'description' => 'Reorder Hotels']);
+
+        // Create permissions for user CRUD
+        Permission::create(['name' => 'user.create', 'slug' => 'user-create', 'description' => 'Create User']);
+        Permission::create(['name' => 'user.view', 'slug' => 'user-view', 'description' => 'Read User']);
+        Permission::create(['name' => 'user.view-any', 'slug' => 'user-view-any', 'description' => 'Read Any Users']);
+        Permission::create(['name' => 'user.update', 'slug' => 'user-update', 'description' => 'Update User']);
+        Permission::create(['name' => 'user.restore', 'slug' => 'user-restore', 'description' => 'Restore User']);
+        Permission::create(['name' => 'user.restore-any', 'slug' => 'user-restore-any', 'description' => 'Restore Any Users']);
+        Permission::create(['name' => 'user.delete', 'slug' => 'user-delete', 'description' => 'Delete User']);
+        Permission::create(['name' => 'user.delete-any', 'slug' => 'user-delete-any', 'description' => 'Delete Any Users']);
+        Permission::create(['name' => 'user.force-delete', 'slug' => 'user-force-delete', 'description' => 'Force Delete User']);
+        Permission::create(['name' => 'user.force-delete-any', 'slug' => 'user-force-delete-any', 'description' => 'Force Delete Any Users']);
+        Permission::create(['name' => 'user.reorder', 'slug' => 'user-reorder', 'description' => 'Reorder Users']);
     }
 }
