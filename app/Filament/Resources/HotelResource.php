@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources;
 
+use App\Enums\HotelStatus;
 use App\Filament\Resources\HotelResource\Pages;
 use App\Filament\Resources\HotelResource\RelationManagers;
 use App\Models\Hotel;
@@ -42,9 +43,9 @@ class HotelResource extends Resource
                     ->tel()
                     ->required()
                     ->maxLength(255),
-                Forms\Components\TextInput::make('status')
+                Forms\Components\Select::make('status')
                     ->required()
-                    ->maxLength(255),
+                    ->options(HotelStatus::options()),
             ]);
     }
 
